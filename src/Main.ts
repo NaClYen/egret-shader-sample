@@ -36,11 +36,11 @@ class Main extends eui.UILayer {
         });
 
         egret.lifecycle.onPause = () => {
-            egret.ticker.pause();
+            // egret.ticker.pause();
         };
 
         egret.lifecycle.onResume = () => {
-            egret.ticker.resume();
+            // egret.ticker.resume();
         };
 
         //inject the custom material parser
@@ -98,7 +98,7 @@ class Main extends eui.UILayer {
      * Create scene interface
      */
     protected createGameScene(): void {
-        let sky = this.createBitmapByName("bg_jpg");
+        let sky = this.createBitmapByName("sun_down_jpeg");
         this.addChild(sky);
         let stageW = this.stage.stageWidth;
         let stageH = this.stage.stageHeight;
@@ -147,12 +147,9 @@ class Main extends eui.UILayer {
         textfield.y = 135;
         this.textfield = textfield;
 
-        let button = new eui.Button();
-        button.label = "Click!";
-        button.horizontalCenter = 0;
-        button.verticalCenter = 0;
-        this.addChild(button);
-        button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+        //#region shader
+        this.shaderTest(sky);
+        //#endregion
     }
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
@@ -194,15 +191,11 @@ class Main extends eui.UILayer {
         change();
     }
 
-    /**
-     * 点击按钮
-     * Click the button
-     */
-    private onButtonClick(e: egret.TouchEvent) {
-        let panel = new eui.Panel();
-        panel.title = "Title";
-        panel.horizontalCenter = 0;
-        panel.verticalCenter = 0;
-        this.addChild(panel);
+    //#region shader
+    private async shaderTest(target: egret.DisplayObject) {
+        await MyFilter.loadScript();
+        MyFilter.init(target);
+        MyFilter.enable = true;
     }
+    //#endregion
 }
