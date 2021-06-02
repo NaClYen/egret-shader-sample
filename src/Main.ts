@@ -147,8 +147,11 @@ class Main extends eui.UILayer {
         textfield.y = 135;
         this.textfield = textfield;
 
-        //#region shader
-        this.shaderTest(sky);
+        //#region shader, 逐一開啟想要測試的部分即可
+        // this.shaderTest_1(sky);
+        // this.shaderTest_2(sky);
+        // this.shaderTest_3(sky);
+        this.shaderTest_4(sky);
         //#endregion
     }
     /**
@@ -192,10 +195,41 @@ class Main extends eui.UILayer {
     }
 
     //#region shader
-    private async shaderTest(target: egret.DisplayObject) {
-        await MyFilter.loadScript();
-        MyFilter.init(target);
-        MyFilter.enable = true;
+    // sample 1, 基本用法
+    private async shaderTest_1(target: egret.DisplayObject) {
+        await Sample_1.applyFilter(target);
+    }
+
+    // sample 2, 動態載入
+    private async shaderTest_2(target: egret.DisplayObject) {
+        await Sample_2.applyFilter(target);
+    }
+
+    // sample 3, 抽象控制
+    // s3.brightness = 0.3 // 調整亮度參數
+    // s3.enable = false // 關閉濾鏡
+    // s3.enable = true // 開啟濾鏡
+    private async shaderTest_3(target: egret.DisplayObject) {
+        await Sample_3.applyFilter(target).then((op) => {
+            window["s3"] = op;
+            op.enable = true;
+        });
+    }
+
+    // sample 4, 動態抽換 shader
+    // s4.reload() // 重新讀取 shader
+    // tweenTest.drakToLight() // 測試 tween filter
+    private async shaderTest_4(target: egret.DisplayObject) {
+        await Sample_4.applyFilter(target).then((op) => {
+            window["s4"] = op;
+            op.enable = true;
+        });
+
+        window["tweenTest"] = {
+            drakToLight() {
+                egret.Tween.get(window["s4"]).to({ brightness: -0.8 }).to({ brightness: 0.8 }, 1000);
+            }
+        };
     }
     //#endregion
 }
