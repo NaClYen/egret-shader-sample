@@ -1,13 +1,13 @@
 # egret-shader-sample
 
 ## 閱讀指引
-- [Sample_1](./blob/main/src/filters/Sample_1.ts)  
+- [Sample_1](./src/filters/Sample_1.ts)  
     最直接的寫法, 但因為寫在字串內, 缺少IDE輔助不好編輯.
-- [Sample_2](./blob/main/src/filters/Sample_2.ts)  
+- [Sample_2](./src/filters/Sample_2.ts)  
     獨立出 shader 檔案並且動態載入, 讓編輯更輕鬆.
-- [Sample_3](./blob/main/src/filters/Sample_3.ts)  
+- [Sample_3](./src/filters/Sample_3.ts)  
     將抽象一些基本操作, 模擬日常使用時通常會包裝成類別的樣貌.
-- [Sample_4](./blob/main/src/filters/Sample_4.ts)  
+- [Sample_4](./src/filters/Sample_4.ts)  
     因應日常會在遊戲的某個角落測試, 每次修改都要重新開遊戲會很浪費人生!!  
     實作在 runtime 中更換 shader(目前得要抽換整個 filter).
   - 另外實作 tween filter 參數的[範例](https://github.com/NaClYen/egret-shader-sample/blob/5cf4464fab530e217a3c173cccc6d538c52b085c/src/Main.ts#L222)
