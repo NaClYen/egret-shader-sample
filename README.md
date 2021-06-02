@@ -11,12 +11,14 @@
     因應日常會在遊戲的某個角落測試, 每次修改都要重新開遊戲會很浪費人生!!  
     實作在 runtime 中更換 shader(目前得要抽換整個 filter).
   - 另外實作 tween filter 參數的[範例](https://github.com/NaClYen/egret-shader-sample/blob/5cf4464fab530e217a3c173cccc6d538c52b085c/src/Main.ts#L222)
+- [egret shader note @ HackMD](https://hackmd.io/@naclyen/ryK3SEf9d)  
+    蒐集 egret shader 相關的筆記供參考.
 
 ---
 
-## start debug
-press F5 to start
-if has any issue, check `./vscode/launch.json` first.
+## run project
+press F5 to start.  
+if has any issue, check `./vscode/launch.json` first.  
 
 ---
 
